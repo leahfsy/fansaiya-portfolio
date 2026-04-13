@@ -7,10 +7,11 @@
   overflow: hidden;
   padding: 8rem 0 5rem;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 53, 0.15), transparent),
-    radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.08), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(59, 130, 246, 0.06), transparent 35%),
-    linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 107, 53, 0.25), transparent 50%),
+    radial-gradient(circle at 15% 80%, rgba(139, 92, 246, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 70%, rgba(59, 130, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(211, 165, 109, 0.08), transparent 60%),
+    linear-gradient(135deg, #1a1520 0%, #0f0f14 40%, #1a1a1f 100%);
 }
 
 .hero::before,
@@ -23,13 +24,15 @@
 
 .hero::before {
   background:
-    radial-gradient(circle at 80% 18%, rgba(211, 165, 109, 0.14), transparent 28%),
-    radial-gradient(circle at 18% 62%, rgba(255, 255, 255, 0.06), transparent 22%);
-  opacity: 0.6;
+    radial-gradient(circle at 75% 20%, rgba(255, 140, 90, 0.2), transparent 25%),
+    radial-gradient(circle at 25% 70%, rgba(180, 120, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 85%, rgba(100, 150, 255, 0.1), transparent 25%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
 }
 
 .hero::after {
-  background: linear-gradient(180deg, rgba(7,7,7,0.18) 0%, rgba(7,7,7,0.88) 82%, rgba(7,7,7,1) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.4) 70%, rgba(10,10,10,0.95) 100%);
 }
 
 .hero-content {
