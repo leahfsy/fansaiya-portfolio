@@ -1,0 +1,157 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+const navItems = [
+  { label: '首页', path: '/', label_en: 'Home' },
+  { label: '作品', path: '/works', label_en: 'Works' },
+  { label: '视频', path: '/video', label_en: 'Video' },
+  { label: '关于', path: '/about', label_en: 'About' },
+  { label: '联系', path: '/contact', label_en: 'Contact' },
+];
+---
+
+<header class="header">
+  <div class="header-shell">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <span class="logo-text">樊赛娅</span>
+          <span class="logo-subtitle">Environment Portfolio</span>
+        </a>
+      </div>
+
+      <nav class="nav" aria-label="主导航">
+        <ul class="nav-list">
+          {navItems.map((item) => (
+            <li class="nav-item">
+              <a href={item.path} class={`nav-link ${currentPath === item.path ? 'active' : ''}`} title={item.label_en}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <a class="header-cta" href="/downloads/portfolio.pdf" target="_blank" rel="noopener">PDF</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    padding: 1rem 0;
+    pointer-events: none;
+  }
+
+  .header-shell {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+  }
+
+  .header-content {
+    pointer-events: auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--spacing-xl);
+    padding: 0.9rem 1.2rem;
+    background: rgba(18, 18, 18, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px) saturate(125%);
+    border-radius: 999px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .logo a {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-family-serif);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.1;
+  }
+
+  .logo-subtitle {
+    font-size: 0.68rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 0.15rem;
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 1.4rem;
+  }
+
+  .nav-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    transition: transform var(--transition-normal);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    color: var(--color-text-primary);
+    background: rgba(255, 107, 53, 0.14);
+    border: 1px solid rgba(255, 107, 53, 0.35);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .header-shell { padding: 0 var(--spacing-lg); }
+    .header-content {
+      grid-template-columns: 1fr;
+      border-radius: var(--radius-2xl);
+      padding: 1rem;
+    }
+    .nav-list { justify-content: flex-start; gap: 1rem 1.2rem; }
+    .header-cta { justify-self: start; }
+  }
+</style>

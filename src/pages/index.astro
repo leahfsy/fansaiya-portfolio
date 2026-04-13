@@ -1,0 +1,62 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import content from '@/content.json';
+import '@/styles/index.css';
+
+const featuredWorks = content.works.slice(0, 3);
+---
+
+<Layout title={content.site.title} description={content.site.description} currentPath="/">
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Environment Art / UE5</p>
+      <h1 class="hero-title">{content.hero.title}</h1>
+      <p class="hero-subtitle">{content.hero.subtitle}</p>
+      <div class="hero-actions">
+        <a href={content.hero.cta_link} class="cta-button">{content.hero.cta}</a>
+        <a href="/downloads/portfolio.pdf" class="cta-button secondary" target="_blank" rel="noopener">下载作品集 PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-works">
+    <div class="container">
+      <p class="eyebrow">Selected Works</p>
+      <h2>全宽叙事型项目展示</h2>
+      <p class="section-copy">首页聚焦代表项目，整体节奏朝深色、高级、电影感方向统一。后续只要更新 <code>src/content.json</code>，卡片与详情页会同步更新。</p>
+      <div class="works-grid">
+        {featuredWorks.map((work) => (
+          <article class="work-card">
+            <div class="work-image">
+              <img src={work.coverImage} alt={work.title} loading="lazy" />
+              <div class="work-overlay">
+                <a href={`/project/${work.id}`} class="view-link">查看详情</a>
+              </div>
+            </div>
+            <div class="work-info">
+              <span class="work-category">{work.category}</span>
+              <h3>{work.title}</h3>
+              <p>{work.shortDescription}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-section__panel">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h2>继续浏览完整作品库</h2>
+          <p>保留原有路由结构，同时把视觉和排版统一到更成熟的作品集表达方式。</p>
+        </div>
+        <div class="hero-actions">
+          <a href="/works" class="cta-button">浏览全部作品</a>
+          <a href="/contact" class="cta-button secondary">联系我</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

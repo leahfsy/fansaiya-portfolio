@@ -1,0 +1,114 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import content from '@/content.json';
+import '@/styles/works.css';
+---
+
+<Layout
+  title="作品集 | 樊赛娅"
+  description="查看我的 UE5 游戏环境设计和地编作品"
+  currentPath="/works"
+>
+  <section class="works-hero">
+    <div class="container">
+      <p class="eyebrow">Portfolio</p>
+      <h1>完整作品库</h1>
+      <p>UE5 环境设计与地编项目，涵盖场景营造、光照氛围、地形塑形与空间叙事。</p>
+    </div>
+  </section>
+
+  <section class="works-section">
+    <div class="container">
+      <div class="works-controls">
+        <div class="search-box">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="搜索作品标题或描述..."
+            aria-label="Search works"
+          />
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filter-tags">
+          {['全部', ...new Set(content.works.map((w) => w.category))].map(
+            (tag) => (
+              <button
+                class={`filter-tag ${tag === '全部' ? 'active' : ''}`}
+                data-filter={tag}
+              >
+                {tag}
+              </button>
+            )
+          )}
+        </div>
+      </div>
+
+      <div class="works-grid">
+        {content.works.map((work) => (
+          <article class="work-card" data-category={work.category}>
+            <a href={`/project/${work.id}`} class="work-link">
+              <div class="work-image">
+                <img
+                  src={work.coverImage}
+                  alt={work.title}
+                  loading="lazy"
+                />
+                <div class="work-meta">
+                  <span class="work-category">{work.category}</span>
+                </div>
+              </div>
+              <div class="work-content">
+                <h3>{work.title}</h3>
+                <p>{work.shortDescription}</p>
+                <div class="work-tags">
+                  {work.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const filterTags = document.querySelectorAll('.filter-tag');
+  const workCards = document.querySelectorAll('[data-category]');
+
+  function filterWorks() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const activeCategory =
+      document.querySelector('.filter-tag.active')?.getAttribute('data-filter') ||
+      '全部';
+
+    workCards.forEach((card) => {
+      const category = card.getAttribute('data-category');
+      const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+      const description =
+        card.querySelector('p')?.textContent?.toLowerCase() || '';
+
+      const matchesCategory = activeCategory === '全部' || category === activeCategory;
+      const matchesSearch =
+        title.includes(searchTerm) || description.includes(searchTerm);
+
+      (card as HTMLElement).style.display =
+        matchesCategory && matchesSearch ? 'block' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterWorks);
+
+  filterTags.forEach((tag) => {
+    tag.addEventListener('click', () => {
+      filterTags.forEach((t) => t.classList.remove('active'));
+      tag.classList.add('active');
+      filterWorks();
+    });
+  });
+</script>

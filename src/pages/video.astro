@@ -1,0 +1,258 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const videos = [
+  {
+    id: 1,
+    title: '森林城堡环境演示',
+    description: '完整的场景漫游，展示地形、植被、光照和氛围营造。',
+    thumbnail: '/images/video-thumb-1.jpg',
+    videoUrl: '/videos/forest-castle.mp4',
+    duration: '3:45',
+    category: '环境设计',
+  },
+  {
+    id: 2,
+    title: '赛博朋克城市夜景',
+    description: '霓虹灯光效果和后期处理展示。',
+    thumbnail: '/images/video-thumb-2.jpg',
+    videoUrl: '/videos/cyberpunk-night.mp4',
+    duration: '2:30',
+    category: '光照设计',
+  },
+  {
+    id: 3,
+    title: '古埃及神庙探索',
+    description: '历史场景重建与氛围营造。',
+    thumbnail: '/images/video-thumb-3.jpg',
+    videoUrl: '/videos/egyptian-temple.mp4',
+    duration: '4:15',
+    category: '场景营造',
+  },
+];
+---
+
+<Layout
+  title="视频展示 | 樊赛娅"
+  description="观看我的 UE5 游戏环境设计视频演示"
+  currentPath="/video"
+>
+  <div class="video-page">
+    <section class="video-hero">
+      <div class="container">
+        <h1>视频展示</h1>
+        <p>通过视频深入了解我的作品细节与设计思路</p>
+      </div>
+    </section>
+
+    <section class="video-content">
+      <div class="container">
+        <div class="video-grid">
+          {videos.map((video) => (
+            <article class="video-card">
+              <div class="video-thumbnail">
+                <img src={video.thumbnail} alt={video.title} loading="lazy" />
+                <div class="play-overlay">
+                  <button class="play-button" aria-label="Play video">
+                    ▶
+                  </button>
+                </div>
+                <span class="video-duration">{video.duration}</span>
+                <span class="video-category">{video.category}</span>
+              </div>
+              <div class="video-info">
+                <h3>{video.title}</h3>
+                <p>{video.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="video-note">
+          <p>
+            注：视频文件为示例占位。实际使用时请替换为真实视频文件或使用
+            YouTube/Bilibili 等视频平台嵌入。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .video-page {
+    background-color: var(--color-bg-primary);
+  }
+
+  .video-hero {
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-secondary) 0%,
+      var(--color-bg-primary) 100%
+    );
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .video-hero h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .video-hero p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .video-content {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .video-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .video-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .video-thumbnail {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+
+  .video-card:hover .video-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  .video-card:hover .play-overlay {
+    opacity: 1;
+  }
+
+  .play-button {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-primary);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .play-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+  }
+
+  .video-duration {
+    position: absolute;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: var(--radius-sm);
+  }
+
+  .video-category {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-bg-primary);
+    background-color: var(--color-accent);
+    border-radius: var(--radius-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .video-info {
+    padding: var(--spacing-lg);
+  }
+
+  .video-info h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .video-info p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .video-note {
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+
+  .video-note p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .video-hero h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    .video-hero p {
+      font-size: var(--font-size-lg);
+    }
+
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

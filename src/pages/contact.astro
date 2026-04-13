@@ -1,0 +1,325 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import content from '@/content.json';
+---
+
+<Layout
+  title="联系我 | 樊赛娅"
+  description="联系樊赛娅，讨论游戏环境设计与地编合作机会"
+  currentPath="/contact"
+>
+  <div class="contact-page">
+    <section class="contact-hero">
+      <div class="container">
+        <h1>联系我</h1>
+        <p>期待与你交流合作</p>
+      </div>
+    </section>
+
+    <section class="contact-content">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2>联系方式</h2>
+            <p class="intro-text">
+              如果你对我的作品感兴趣，或者有任何合作机会，欢迎通过以下方式联系我。
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-details">
+                  <h3>邮箱</h3>
+                  <a href="mailto:fansaiya@163.com" class="contact-link">
+                    fansaiya@163.com
+                  </a>
+                  <p class="contact-note">工作日 24 小时内回复</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">💬</div>
+                <div class="contact-details">
+                  <h3>微信</h3>
+                  <p class="contact-value">13357702487</p>
+                  <p class="contact-note">请注明来意</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">📄</div>
+                <div class="contact-details">
+                  <h3>作品集下载</h3>
+                  <a
+                    href="/downloads/portfolio.pdf"
+                    class="download-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    下载完整作品集 PDF
+                  </a>
+                  <p class="contact-note">包含详细项目说明</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-section">
+            <h2>快速留言</h2>
+            <form class="contact-form" action="#" method="post">
+              <div class="form-group">
+                <label for="name">姓名</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="请输入您的姓名"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">邮箱</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">主题</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  placeholder="请简述您的需求"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message">留言内容</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  required
+                  placeholder="请详细描述您的需求或问题..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-button">
+                发送留言
+              </button>
+
+              <p class="form-note">
+                注：此表单为示例，实际使用需配置后端服务或第三方表单服务
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .contact-page {
+    background-color: var(--color-bg-primary);
+  }
+
+  .contact-hero {
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-secondary) 0%,
+      var(--color-bg-primary) 100%
+    );
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .contact-hero h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .contact-hero p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-content {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4xl);
+  }
+
+  .contact-info h2,
+  .contact-form-section h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .intro-text {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  .contact-item {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+  }
+
+  .contact-item:hover {
+    border-color: var(--color-accent);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    font-size: var(--font-size-3xl);
+    line-height: 1;
+  }
+
+  .contact-details {
+    flex: 1;
+  }
+
+  .contact-details h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .contact-link,
+  .download-link {
+    display: inline-block;
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .contact-link:hover,
+  .download-link:hover {
+    color: var(--color-accent-light);
+  }
+
+  .contact-value {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .contact-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .form-group label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+  }
+
+  .form-note {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 968px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    .contact-hero p {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

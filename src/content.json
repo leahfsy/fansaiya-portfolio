@@ -1,0 +1,136 @@
+{
+  "site": {
+    "title": "樊赛娅 - 游戏地编作品集",
+    "description": "UE5 游戏环境美术设计与地编作品集。Unreal Engine 5 环境设计、光照、地形、道具整合。",
+    "author": "樊赛娅 (Leah)",
+    "email": "fansaiya@163.com",
+    "wechat": "13357702487",
+    "siteUrl": "https://fansaiya.com",
+    "language": "zh-CN"
+  },
+  "navigation": [
+    { "label": "首页", "path": "/", "label_en": "Home" },
+    { "label": "作品", "path": "/works", "label_en": "Works" },
+    { "label": "关于", "path": "/about", "label_en": "About" },
+    { "label": "联系", "path": "/contact", "label_en": "Contact" }
+  ],
+  "hero": {
+    "title": "环境叙事与地编质感",
+    "subtitle": "以 UE5 构建具有电影感与空间节奏的游戏场景",
+    "cta": "查看作品",
+    "cta_link": "/works"
+  },
+  "works": [
+    {
+      "id": 1,
+      "title": "森林城堡环境设计",
+      "slug": "forest-castle",
+      "category": "环境设计",
+      "category_en": "Environment",
+      "tags": ["UE5", "地形", "光照"],
+      "description": "中世纪风格的森林城堡场景，结合地形塑形、植被系统、光照营造，营造沉浸式氛围。",
+      "shortDescription": "中世纪森林城堡场景设计",
+      "thumbnail": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "videoUrl": "",
+      "details": {
+        "engine": "Unreal Engine 5.4",
+        "scale": "8km²",
+        "duration": "3 months",
+        "team": "Solo Project",
+        "description": "完整的中世纪森林环境，涵盖地形雕塑、植被布置、光照营造、道具摆放与性能优化，目标是建立兼具视觉冲击和可探索性的空间。"
+      }
+    },
+    {
+      "id": 2,
+      "title": "赛博朋克城市街景",
+      "slug": "cyberpunk-street",
+      "category": "场景营造",
+      "category_en": "Scene Design",
+      "tags": ["UE5", "城市", "后期处理"],
+      "description": "霓虹灯闪烁的未来城市街道，运用高级光照和后期处理打造赛博朋克美学。",
+      "shortDescription": "赛博朋克风格城市场景",
+      "thumbnail": "https://images.unsplash.com/photo-1520034475321-cbe63696469a?auto=format&fit=crop&w=1200&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1520034475321-cbe63696469a?auto=format&fit=crop&w=1600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "videoUrl": "",
+      "details": {
+        "engine": "Unreal Engine 5.4",
+        "scale": "2km²",
+        "duration": "2 months",
+        "team": "Solo Project",
+        "description": "以现代城市为基础融合赛博朋克视觉元素，重点在灯光设计、材质系统与后期处理的协同，强化科幻感与镜头张力。"
+      }
+    },
+    {
+      "id": 3,
+      "title": "古埃及神庙遗迹",
+      "slug": "egyptian-temple",
+      "category": "环境设计",
+      "category_en": "Environment",
+      "tags": ["UE5", "考古", "历史"],
+      "description": "宏伟的古埃及神庙和废墟，结合历史美感和现代游戏引擎技术。",
+      "shortDescription": "古埃及神庙场景",
+      "thumbnail": "https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1200&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1548786811-dd6e453ccca7?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "videoUrl": "",
+      "details": {
+        "engine": "Unreal Engine 5.4",
+        "scale": "3km²",
+        "duration": "2.5 months",
+        "team": "Solo Project",
+        "description": "通过建筑塑形、沙漠地形、破损细节与氛围光照，营造历史遗迹的沧桑感和宏伟尺度。"
+      }
+    },
+    {
+      "id": 4,
+      "title": "山区基地",
+      "slug": "mountain-base",
+      "category": "军事基地",
+      "category_en": "Military Base",
+      "tags": ["UE5", "地形", "建筑"],
+      "description": "山区军事基地设计，融合现代建筑和自然地形。",
+      "shortDescription": "山区军事基地",
+      "thumbnail": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "videoUrl": "",
+      "details": {
+        "engine": "Unreal Engine 5.4",
+        "scale": "4km²",
+        "duration": "2 months",
+        "team": "Solo Project",
+        "description": "设计一个隐蔽的山区军事基地，包括地下设施、防御工事和现代军事建筑，并强化自然地形与人造结构的张力对比。"
+      }
+    }
+  ],
+  "about": {
+    "title": "关于我",
+    "subtitle": "UE5 环境美术设计师与地编方向创作者",
+    "bio": "我专注于虚拟环境设计和游戏场景营造，使用 Unreal Engine 5 从宏观地形规划到微观细节打磨，构建兼具叙事氛围、镜头表现与可玩性的空间。",
+    "skills": [
+      { "category": "环境设计", "items": ["地形雕塑", "景观布置", "光照营造"] },
+      { "category": "技术工具", "items": ["UE5", "Nanite", "Lumen", "MetaHuman"] },
+      { "category": "专业技能", "items": ["场景优化", "性能分析", "技术美术"] }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 樊赛娅. All rights reserved.",
+    "socialLinks": []
+  }
+}

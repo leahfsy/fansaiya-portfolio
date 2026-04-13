@@ -1,0 +1,220 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const galleryImages = [
+  {
+    id: 1,
+    src: '/images/gallery/forest-1.jpg',
+    alt: '森林场景 - 光影效果',
+    caption: '森林场景中的自然光照与体积雾效果',
+  },
+  {
+    id: 2,
+    src: '/images/gallery/castle-1.jpg',
+    alt: '城堡建筑细节',
+    caption: '中世纪城堡的建筑细节与材质表现',
+  },
+  {
+    id: 3,
+    src: '/images/gallery/cyberpunk-1.jpg',
+    alt: '赛博朋克街道',
+    caption: '霓虹灯光与湿润地面的反射效果',
+  },
+  {
+    id: 4,
+    src: '/images/gallery/nature-1.jpg',
+    alt: '自然环境',
+    caption: '植被系统与地形塑形',
+  },
+  {
+    id: 5,
+    src: '/images/gallery/temple-1.jpg',
+    alt: '神庙内部',
+    caption: '古埃及神庙的光影氛围',
+  },
+  {
+    id: 6,
+    src: '/images/gallery/landscape-1.jpg',
+    alt: '远景地形',
+    caption: '大规模地形与远景渲染',
+  },
+  {
+    id: 7,
+    src: '/images/gallery/detail-1.jpg',
+    alt: '材质细节',
+    caption: '近景材质与细节表现',
+  },
+  {
+    id: 8,
+    src: '/images/gallery/lighting-1.jpg',
+    alt: '光照设计',
+    caption: '动态光照与阴影效果',
+  },
+];
+---
+
+<Layout
+  title="图集 | 樊赛娅"
+  description="浏览我的 UE5 游戏环境设计高清图集"
+  currentPath="/gallery"
+>
+  <div class="gallery-page">
+    <section class="gallery-hero">
+      <div class="container">
+        <h1>作品图集</h1>
+        <p>精选高清截图，展示环境设计的细节与质感</p>
+      </div>
+    </section>
+
+    <section class="gallery-content">
+      <div class="container">
+        <div class="gallery-masonry">
+          {galleryImages.map((image) => (
+            <figure class="gallery-item">
+              <img src={image.src} alt={image.alt} loading="lazy" />
+              <figcaption>{image.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div class="gallery-note">
+          <p>
+            注：图片为示例占位。实际使用时请替换为真实作品截图。
+            建议使用高质量图片（1920x1080 或更高分辨率）。
+          </p>
+          <p class="watermark-note">
+            所有图片已添加水印保护，如需原图请联系我。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .gallery-page {
+    background-color: var(--color-bg-primary);
+  }
+
+  .gallery-hero {
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-secondary) 0%,
+      var(--color-bg-primary) 100%
+    );
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .gallery-hero h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .gallery-hero p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .gallery-content {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .gallery-masonry {
+    columns: 3 320px;
+    column-gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: var(--spacing-xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+  }
+
+  .gallery-item:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item figcaption {
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .gallery-note {
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+
+  .gallery-note p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .gallery-note p:last-child {
+    margin-bottom: 0;
+  }
+
+  .watermark-note {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-hero h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    .gallery-hero p {
+      font-size: var(--font-size-lg);
+    }
+
+    .gallery-masonry {
+      columns: 1;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-masonry {
+      columns: 2;
+    }
+  }
+</style>
+
+<script>
+  // Optional: Add lightbox functionality
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      // Placeholder for lightbox functionality
+      // You can integrate a lightbox library here if needed
+      console.log('Image clicked - lightbox can be added here');
+    });
+  });
+</script>

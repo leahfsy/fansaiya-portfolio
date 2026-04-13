@@ -1,0 +1,225 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import content from '@/content.json';
+---
+
+<Layout
+  title="关于我 | 樊赛娅"
+  description={content.about.bio}
+  currentPath="/about"
+>
+  <div class="about-page">
+    <section class="about-hero">
+      <div class="container">
+        <h1>{content.about.title}</h1>
+        <p class="subtitle">{content.about.subtitle}</p>
+      </div>
+    </section>
+
+    <section class="about-content">
+      <div class="container">
+        <div class="bio-section">
+          <h2>个人简介</h2>
+          <p class="bio-text">{content.about.bio}</p>
+        </div>
+
+        <div class="skills-section">
+          <h2>专业技能</h2>
+          <div class="skills-grid">
+            {content.about.skills.map((skillGroup) => (
+              <div class="skill-group">
+                <h3>{skillGroup.category}</h3>
+                <ul class="skill-list">
+                  {skillGroup.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h2>让我们一起创造精彩</h2>
+          <p>如果你对我的作品感兴趣，欢迎联系我讨论合作机会。</p>
+          <div class="cta-buttons">
+            <a href="/contact" class="cta-button primary">联系我</a>
+            <a href="/works" class="cta-button secondary">查看作品</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .about-page {
+    background-color: var(--color-bg-primary);
+  }
+
+  .about-hero {
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-secondary) 0%,
+      var(--color-bg-primary) 100%
+    );
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .about-content {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .bio-section,
+  .skills-section,
+  .cta-section {
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .bio-section h2,
+  .skills-section h2,
+  .cta-section h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .bio-text {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 800px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+
+  .skill-group {
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+  }
+
+  .skill-group:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .skill-group h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-accent);
+  }
+
+  .skill-list {
+    list-style: none;
+  }
+
+  .skill-list li {
+    padding: var(--spacing-sm) 0;
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .skill-list li:last-child {
+    border-bottom: none;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-secondary) 0%,
+      var(--color-bg-primary) 100%
+    );
+    border-radius: var(--radius-2xl);
+    margin-top: var(--spacing-4xl);
+  }
+
+  .cta-section p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+  }
+
+  .cta-button.primary {
+    color: var(--color-text-primary);
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+  }
+
+  .cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+  }
+
+  .cta-button.secondary {
+    color: var(--color-accent);
+    background-color: transparent;
+    border: 2px solid var(--color-accent);
+  }
+
+  .cta-button.secondary:hover {
+    background-color: rgba(255, 107, 53, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .about-hero h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    .subtitle {
+      font-size: var(--font-size-lg);
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>

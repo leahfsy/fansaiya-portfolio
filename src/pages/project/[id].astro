@@ -1,0 +1,324 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import content from '@/content.json';
+
+export function getStaticPaths() {
+  return content.works.map((work) => ({
+    params: { id: work.id.toString() },
+  }));
+}
+
+const projectId = Astro.params.id;
+const project = content.works.find((w) => w.id === Number(projectId));
+
+if (!project) {
+  return Astro.redirect('/works');
+}
+---
+
+<Layout
+  title={`${project.title} | 樊赛娅`}
+  description={project.description}
+  currentPath={`/project/${projectId}`}
+>
+  <article class="project-detail">
+    <!-- Hero Cover -->
+    <section class="project-hero">
+      <img src={project.coverImage} alt={project.title} class="hero-image" />
+      <div class="hero-overlay">
+        <div class="container">
+          <span class="project-category">{project.category}</span>
+          <h1>{project.title}</h1>
+          <p class="project-lead">{project.description}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Info -->
+    <section class="project-info">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">引擎</span>
+            <span class="info-value">{project.details.engine}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">规模</span>
+            <span class="info-value">{project.details.scale}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">周期</span>
+            <span class="info-value">{project.details.duration}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">团队</span>
+            <span class="info-value">{project.details.team}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Description -->
+    <section class="project-section">
+      <div class="container">
+        <h2>项目简介</h2>
+        <p class="section-text">{project.details.description}</p>
+      </div>
+    </section>
+
+    <!-- Image Gallery -->
+    {project.images && project.images.length > 0 && (
+      <section class="project-section">
+        <div class="container">
+          <h2>作品展示</h2>
+          <div class="image-gallery">
+            {project.images.map((img) => (
+              <div class="gallery-item">
+                <img src={img} alt={project.title} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Video -->
+    {project.videoUrl && (
+      <section class="project-section">
+        <div class="container">
+          <h2>视频演示</h2>
+          <div class="video-wrapper">
+            <video controls>
+              <source src={project.videoUrl} type="video/mp4" />
+              您的浏览器不支持视频播放。
+            </video>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Tags -->
+    <section class="project-section">
+      <div class="container">
+        <h3>技术标签</h3>
+        <div class="tags-list">
+          {project.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="project-nav">
+      <div class="container">
+        <a href="/works" class="nav-button">← 返回作品集</a>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .project-detail {
+    background-color: var(--color-bg-primary);
+  }
+
+  .project-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.95) 0%,
+      transparent 100%
+    );
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+  }
+
+  .project-category {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-bg-primary);
+    background-color: var(--color-accent);
+    border-radius: var(--radius-md);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-overlay h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .project-lead {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 800px;
+  }
+
+  .project-info {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .info-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .info-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .project-section {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .project-section h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .project-section h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .section-text {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 800px;
+  }
+
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+
+  .gallery-item {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background-color: var(--color-bg-secondary);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-normal);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .video-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background-color: var(--color-bg-secondary);
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .tag {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    background-color: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .project-nav {
+    padding: var(--spacing-3xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav-button {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-button:hover {
+    border-color: var(--color-accent);
+    background-color: rgba(255, 107, 53, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .project-hero {
+      height: 50vh;
+      min-height: 400px;
+    }
+
+    .hero-overlay h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    .project-lead {
+      font-size: var(--font-size-base);
+    }
+
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

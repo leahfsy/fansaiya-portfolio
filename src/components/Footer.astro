@@ -1,0 +1,148 @@
+---
+import content from '@/content.json';
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>联系方式</h3>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:fansaiya@163.com">
+            <span class="label">邮箱</span>
+            <span class="value">fansaiya@163.com</span>
+          </a>
+        </li>
+        <li>
+          <span class="label">微信</span>
+          <span class="value">13357702487</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>快速链接</h3>
+      <ul class="links-list">
+        <li><a href="/">首页</a></li>
+        <li><a href="/works">作品集</a></li>
+        <li><a href="/video">视频</a></li>
+        <li><a href="/about">关于我</a></li>
+        <li><a href="/contact">联系</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>资源下载</h3>
+      <ul class="links-list">
+        <li>
+          <a href="/downloads/portfolio.pdf" target="_blank" rel="noopener">
+            作品集 PDF
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">{content.footer.copyright}</p>
+    <p class="credit">设计与开发：樊赛娅</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-4xl);
+    padding: var(--spacing-4xl) 0 var(--spacing-2xl);
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1440px;
+    margin: 0 auto var(--spacing-2xl);
+    padding: 0 var(--spacing-xl);
+    gap: var(--spacing-2xl);
+  }
+
+  .footer-section h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .contact-list,
+  .links-list {
+    list-style: none;
+  }
+
+  .contact-list li {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .contact-list a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .value {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .links-list li {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .links-list a {
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .links-list a:hover {
+    color: var(--color-text-primary);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-border);
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+  }
+
+  .copyright,
+  .credit {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .credit {
+    margin-top: var(--spacing-sm);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .footer-bottom {
+      padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-lg);
+    }
+  }
+</style>
