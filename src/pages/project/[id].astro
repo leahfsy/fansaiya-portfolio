@@ -235,17 +235,54 @@ if (!project) {
     border-radius: var(--radius-xl);
     overflow: hidden;
     background-color: var(--color-bg-secondary);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item::before {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    font-size: 3rem;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 1);
+    pointer-events: none;
+  }
+
+  .gallery-item:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
   }
 
   .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform var(--transition-normal);
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.95) contrast(1.05);
   }
 
   .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
   }
 
   .video-wrapper {

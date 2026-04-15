@@ -32,11 +32,11 @@ import content from '@/content.json';
     </div>
 
     <div class="footer-section">
-      <h3>资源下载</h3>
+      <h3>简历下载</h3>
       <ul class="links-list">
         <li>
-          <a href="/downloads/portfolio.pdf" target="_blank" rel="noopener">
-            作品集 PDF
+          <a href="/downloads/resume.pdf" target="_blank" rel="noopener">
+            个人简历 PDF
           </a>
         </li>
       </ul>
@@ -51,24 +51,29 @@ import content from '@/content.json';
 
 <style>
   .footer {
-    background-color: var(--color-bg-secondary);
-    border-top: 1px solid var(--color-border);
-    margin-top: var(--spacing-4xl);
-    padding: var(--spacing-4xl) 0 var(--spacing-2xl);
+    background-color: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0;
+    padding: clamp(4rem, 8vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
   }
 
   .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     max-width: 1440px;
-    margin: 0 auto var(--spacing-2xl);
-    padding: 0 var(--spacing-xl);
-    gap: var(--spacing-2xl);
+    margin: 0 auto clamp(3rem, 6vw, 5rem);
+    padding: 0 clamp(2rem, 5vw, 4rem);
+    gap: clamp(2rem, 4vw, 3rem);
   }
 
   .footer-section h3 {
-    font-size: var(--font-size-lg);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: #fff;
     margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .contact-list,
@@ -77,7 +82,7 @@ import content from '@/content.json';
   }
 
   .contact-list li {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
@@ -87,47 +92,56 @@ import content from '@/content.json';
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
+    transition: opacity var(--transition-fast);
+  }
+
+  .contact-list a:hover {
+    opacity: 0.7;
   }
 
   .label {
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1em;
+    font-weight: var(--font-weight-bold);
   }
 
   .value {
-    color: var(--color-accent);
+    color: #fff;
     font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
   }
 
   .links-list li {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
   }
 
   .links-list a {
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
     transition: color var(--transition-fast);
+    font-weight: var(--font-weight-medium);
   }
 
   .links-list a:hover {
-    color: var(--color-text-primary);
+    color: #fff;
   }
 
   .footer-bottom {
     text-align: center;
-    padding-top: var(--spacing-2xl);
-    border-top: 1px solid var(--color-border);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 1440px;
     margin: 0 auto;
-    padding-left: var(--spacing-xl);
-    padding-right: var(--spacing-xl);
+    padding-left: clamp(2rem, 5vw, 4rem);
+    padding-right: clamp(2rem, 5vw, 4rem);
   }
 
   .copyright,
   .credit {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
   }
 

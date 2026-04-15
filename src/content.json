@@ -15,9 +15,9 @@
     { "label": "联系", "path": "/contact", "label_en": "Contact" }
   ],
   "hero": {
-    "title": "环境叙事与地编质感",
-    "subtitle": "以 UE5 构建具有电影感与空间节奏的游戏场景",
-    "cta": "查看作品",
+    "title": "创造虚拟世界",
+    "subtitle": "用 UE5 打造沉浸式游戏环境",
+    "cta": "探索作品",
     "cta_link": "/works"
   },
   "works": [

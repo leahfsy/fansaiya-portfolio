@@ -1,42 +1,49 @@
-/* Design System */
+/* Design System - Luxury Gold & Black */
 :root {
-  --color-bg-primary: #070707;
-  --color-bg-secondary: #111111;
-  --color-bg-tertiary: #1a1a1a;
-  --color-surface: #141414;
-  --color-text-primary: #f6f3ee;
-  --color-text-secondary: rgba(246, 243, 238, 0.72);
-  --color-text-muted: rgba(246, 243, 238, 0.46);
-  --color-accent: #d3a56d;
-  --color-accent-light: #e3bc8d;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-glass-bg: rgba(255, 255, 255, 0.04);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #0a0a0a;
+  --color-surface: #111111;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.75);
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  --color-text-dark: #111111;
+  --color-text-dark-secondary: rgba(17, 17, 17, 0.75);
+  --color-accent: #d4af37;
+  --color-accent-light: #f4d03f;
+  --color-accent-dark: #b8941e;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-dark: rgba(0, 0, 0, 0.1);
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.15);
+  --color-shadow: rgba(0, 0, 0, 0.3);
 
   --font-family-serif: 'Noto Serif SC', 'Georgia', serif;
-  --font-family-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-sans: 'Helvetica Neue', 'Arial', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-display: 'Helvetica Neue', 'Arial', sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
-  --font-size-lg: 1.25rem;
+  --font-size-lg: 1.125rem;
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
-  --font-size-3xl: 2.75rem;
-  --font-size-4xl: 4rem;
-  --font-size-5xl: clamp(4.5rem, 8vw, 7rem);
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 4.5rem;
+  --font-size-5xl: clamp(4rem, 10vw, 8rem);
 
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-black: 900;
 
-  --line-height-tight: 1.08;
-  --line-height-normal: 1.6;
-  --line-height-relaxed: 1.8;
+  --line-height-tight: 1;
+  --line-height-snug: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
 
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -44,29 +51,29 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  --spacing-3xl: 4.5rem;
-  --spacing-4xl: 7rem;
-  --spacing-5xl: 10rem;
+  --spacing-3xl: 5rem;
+  --spacing-4xl: 8rem;
+  --spacing-5xl: 12rem;
 
-  --radius-sm: 0.375rem;
+  --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.28);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.34);
-  --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.42);
-  --shadow-2xl: 0 40px 120px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.3);
 
-  --gradient-accent: linear-gradient(135deg, rgba(211, 165, 109, 0.18), rgba(211, 165, 109, 0));
-  --gradient-panel: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  --gradient-accent: linear-gradient(135deg, rgba(17, 17, 17, 0.1), rgba(17, 17, 17, 0));
+  --gradient-panel: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
 
-  --transition-fast: 150ms ease-out;
-  --transition-normal: 300ms ease-out;
-  --transition-slow: 500ms ease-out;
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
 
   --z-dropdown: 10;
   --z-sticky: 20;

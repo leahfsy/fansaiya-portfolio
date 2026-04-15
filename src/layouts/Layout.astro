@@ -53,6 +53,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // 鼠标位置跟踪
+      document.addEventListener('mousemove', (e) => {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      });
+    </script>
   </body>
 </html>
 
@@ -61,6 +69,53 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    cursor: none;
+  }
+
+  :global(body::after) {
+    content: '';
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ffffff 0%, #d4af37 70%, transparent 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    left: var(--mouse-x, -100px);
+    top: var(--mouse-y, -100px);
+    transition: left 0.1s ease-out, top 0.1s ease-out;
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 40px rgba(212, 175, 55, 0.6),
+      0 0 60px rgba(212, 175, 55, 0.4);
+    animation: cursorPulse 2s ease-in-out infinite;
+  }
+
+  :global(body::before) {
+    content: '';
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    left: var(--mouse-x, -100px);
+    top: var(--mouse-y, -100px);
+    transition: left 0.15s ease-out, top 0.15s ease-out, width 0.2s, height 0.2s;
+  }
+
+  @keyframes :global(cursorPulse) {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.8;
+    }
   }
 
   .main-content {

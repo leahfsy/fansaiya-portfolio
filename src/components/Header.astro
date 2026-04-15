@@ -37,8 +37,6 @@ const navItems = [
           ))}
         </ul>
       </nav>
-
-      <a class="header-cta" href="/downloads/portfolio.pdf" target="_blank" rel="noopener">PDF</a>
     </div>
   </div>
 </header>
@@ -48,14 +46,17 @@ const navItems = [
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    padding: 1rem 0;
+    padding: 0;
     pointer-events: none;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   }
 
   .header-shell {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 var(--spacing-xl);
+    padding: 0 clamp(2rem, 5vw, 4rem);
   }
 
   .header-content {
@@ -64,12 +65,7 @@ const navItems = [
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: var(--spacing-xl);
-    padding: 0.9rem 1.2rem;
-    background: rgba(18, 18, 18, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(18px) saturate(125%);
-    border-radius: 999px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+    padding: 1rem 0;
   }
 
   .logo a {
@@ -78,15 +74,20 @@ const navItems = [
     gap: 0.75rem;
     color: var(--color-text-primary);
     text-decoration: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .logo a:hover {
+    opacity: 0.8;
   }
 
   .logo-avatar {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255, 107, 53, 0.3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
   }
 
   .logo-text-wrapper {
@@ -95,16 +96,19 @@ const navItems = [
   }
 
   .logo-text {
-    font-family: var(--font-family-serif);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-family-display);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
     line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
   }
 
   .logo-subtitle {
-    font-size: 0.68rem;
-    color: var(--color-text-secondary);
-    letter-spacing: 0.16em;
+    font-size: 0.9375rem;
+    color: rgba(212, 175, 55, 0.7);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-top: 0.15rem;
   }
@@ -114,14 +118,18 @@ const navItems = [
     justify-content: center;
     flex-wrap: wrap;
     list-style: none;
-    gap: 1.4rem;
+    gap: 2rem;
   }
 
   .nav-link {
     font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
     position: relative;
     padding-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color var(--transition-fast);
   }
 
   .nav-link::after {
@@ -130,16 +138,16 @@ const navItems = [
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 1px;
+    height: 2px;
     transform: scaleX(0);
     transform-origin: center;
-    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
     transition: transform var(--transition-normal);
   }
 
   .nav-link:hover,
   .nav-link.active {
-    color: var(--color-text-primary);
+    color: #d4af37;
   }
 
   .nav-link:hover::after,
@@ -151,25 +159,33 @@ const navItems = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 52px;
-    padding: 0.65rem 1rem;
-    border-radius: 999px;
-    color: var(--color-text-primary);
-    background: rgba(255, 107, 53, 0.14);
-    border: 1px solid rgba(255, 107, 53, 0.35);
-    font-size: var(--font-size-xs);
-    letter-spacing: 0.08em;
+    min-width: 80px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    color: #000;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  }
+
+  .header-cta:hover {
+    background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
   }
 
   @media (max-width: 900px) {
     .header-shell { padding: 0 var(--spacing-lg); }
     .header-content {
       grid-template-columns: 1fr;
-      border-radius: var(--radius-2xl);
-      padding: 1rem;
+      padding: 1rem 0;
+      gap: 1rem;
     }
-    .nav-list { justify-content: flex-start; gap: 1rem 1.2rem; }
+    .nav-list { justify-content: flex-start; gap: 1rem 1.5rem; }
     .header-cta { justify-self: start; }
   }
 </style>
