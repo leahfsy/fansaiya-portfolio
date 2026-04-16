@@ -407,8 +407,8 @@ if (!adminToken || adminToken.value !== 'authenticated') {
           <p style="color: #666; margin-bottom: 15px;">${work.shortDescription}</p>
 
           <div class="work-images">
-            <img src="${work.coverImage}" alt="封面图">
-            ${work.images.map(img => `<img src="${img}" alt="作品图">`).join('')}
+            <img src="${getThumbnail(work.coverImage)}" alt="封面图" loading="lazy">
+            ${work.images.map(img => `<img src="${getThumbnail(img)}" alt="作品图" loading="lazy">`).join('')}
           </div>
 
           <label class="upload-btn" onclick="selectWork(${index}, 'cover')">
@@ -424,6 +424,17 @@ if (!adminToken || adminToken.value !== 'authenticated') {
           <button class="btn btn-primary" onclick="editWorkText(${index})">编辑文字</button>
         </div>
       `).join('');
+    }
+
+    // 生成缩略图 URL
+    function getThumbnail(url) {
+      if (!url) return '';
+      // 如果是 Unsplash 图片，添加缩略图参数
+      if (url.includes('unsplash.com')) {
+        return url.replace(/w=\d+/, 'w=160').replace(/q=\d+/, 'q=60');
+      }
+      // 如果是本地上传的图片，保持原样（已经很小了）
+      return url;
     }
 
     function selectWork(index, type) {
