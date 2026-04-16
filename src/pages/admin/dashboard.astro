@@ -249,30 +249,66 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     }
 
     .upload-btn {
-      display: inline-block;
-      padding: 8px 16px;
-      background: #667eea;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       margin-right: 10px;
       margin-bottom: 10px;
+      border: none;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s;
     }
 
     .upload-btn:hover {
-      background: #5568d3;
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .upload-btn:active {
+      transform: translateY(0);
+    }
+
+    .upload-btn::before {
+      content: '📤';
+      font-size: 16px;
     }
 
     .work-item .btn {
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 500;
       margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .work-item .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .work-item .btn-primary::before {
+      content: '✏️ ';
     }
 
     .work-item p {
       margin-bottom: 15px;
       line-height: 1.5;
+    }
+
+    .work-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
     }
 
     .content-editor {
@@ -411,17 +447,19 @@ if (!adminToken || adminToken.value !== 'authenticated') {
             ${work.images.map(img => `<img src="${getThumbnail(img)}" alt="作品图" loading="lazy">`).join('')}
           </div>
 
-          <label class="upload-btn" onclick="selectWork(${index}, 'cover')">
-            上传封面图
-            <input type="file" style="display:none" id="work-${index}-cover" accept="image/*" onchange="uploadWorkImage(${index}, 'cover', this.files[0])">
-          </label>
+          <div class="work-actions">
+            <label class="upload-btn">
+              上传封面图
+              <input type="file" style="display:none" id="work-${index}-cover" accept="image/*" onchange="uploadWorkImage(${index}, 'cover', this.files[0])">
+            </label>
 
-          <label class="upload-btn" onclick="selectWork(${index}, 'images')">
-            添加作品图
-            <input type="file" style="display:none" id="work-${index}-images" accept="image/*" multiple onchange="uploadWorkImages(${index}, this.files)">
-          </label>
+            <label class="upload-btn">
+              添加作品图
+              <input type="file" style="display:none" id="work-${index}-images" accept="image/*" multiple onchange="uploadWorkImages(${index}, this.files)">
+            </label>
 
-          <button class="btn btn-primary" onclick="editWorkText(${index})">编辑文字</button>
+            <button class="btn btn-primary" onclick="editWorkText(${index})">编辑文字</button>
+          </div>
         </div>
       `).join('');
     }
