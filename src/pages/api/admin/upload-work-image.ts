@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-import fs from 'fs/promises';
-import path from 'path';
+import { getStore } from '@netlify/blobs';
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   // 验证登录
@@ -19,32 +18,30 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       return new Response(JSON.stringify({ error: 'No file provided' }), { status: 400 });
     }
 
-    // 保存图片
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'works');
-    await fs.mkdir(uploadDir, { recursive: true });
+    // 将图片转换为 base64 或上传到图床
+    const buffer = await file.arrayBuffer();
+    const base64 = Buffer.from(buffer).toString('base64');
+    const imageUrl = `data:${file.type};base64,${base64}`;
 
-    const filename = `work-${workIndex}-${type}-${Date.now()}${path.extname(file.name)}`;
-    const filepath = path.join(uploadDir, filename);
-    await fs.writeFile(filepath, buffer);
+    // 从 Netlify Blobs 读取数据
+    const store = getStore('content');
+    const content = await store.get('works', { type: 'json' });
 
-    // 更新 content.json
-    const contentPath = path.join(process.cwd(), 'src', 'content.json');
-    const contentStr = await fs.readFile(contentPath, 'utf-8');
-    const content = JSON.parse(contentStr);
-
-    const imageUrl = `/uploads/works/${filename}`;
+    if (!content || !content.works || !content.works[workIndex]) {
+      return new Response(JSON.stringify({ error: 'Work not found' }), { status: 404 });
+    }
 
     if (type === 'cover') {
       content.works[workIndex].coverImage = imageUrl;
       content.works[workIndex].thumbnail = imageUrl;
     }
 
-    await fs.writeFile(contentPath, JSON.stringify(content, null, 2));
+    // 保存到 Netlify Blobs
+    await store.setJSON('works', content);
 
     return new Response(JSON.stringify({ success: true, url: imageUrl }), { status: 200 });
   } catch (error) {
     console.error('Upload error:', error);
-    return new Response(JSON.stringify({ error: 'Upload failed' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Upload failed', message: error.message }), { status: 500 });
   }
 };
