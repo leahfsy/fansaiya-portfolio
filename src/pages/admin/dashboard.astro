@@ -523,7 +523,7 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     }
 
     // 上传作品封面
-    async function uploadWorkImage(workIndex, type, file) {
+    window.uploadWorkImage = async function(workIndex, type, file) {
       if (!file) return;
 
       const formData = new FormData();
@@ -549,7 +549,7 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     }
 
     // 上传多张作品图
-    async function uploadWorkImages(workIndex, files) {
+    window.uploadWorkImages = async function(workIndex, files) {
       if (!files.length) return;
 
       const formData = new FormData();
@@ -576,7 +576,7 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     }
 
     // 编辑作品文字
-    function editWorkText(index) {
+    window.editWorkText = function(index) {
       const work = contentData.works[index];
       const newTitle = prompt('作品标题:', work.title);
       const newDesc = prompt('简短描述:', work.shortDescription);
@@ -606,7 +606,7 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     }
 
     // 删除图片
-    async function deleteImage(workIndex, type, imageIndex) {
+    window.deleteImage = async function(workIndex, type, imageIndex) {
       if (!confirm('确定要删除这张图片吗？')) return;
 
       try {
@@ -652,7 +652,7 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     });
 
     // 保存单个字段
-    async function saveField(field, elementId) {
+    window.saveField = async function(field, elementId) {
       const value = document.getElementById(elementId).value;
 
       try {
