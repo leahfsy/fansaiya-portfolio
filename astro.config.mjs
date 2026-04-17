@@ -6,4 +6,7 @@ export default defineConfig({
   site: 'https://fansaiya.com',
   output: 'server',
   adapter: netlify(),
+  security: {
+    checkOrigin: false
+  }
 });
