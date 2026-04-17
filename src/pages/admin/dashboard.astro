@@ -442,9 +442,9 @@ if (!adminToken || adminToken.value !== 'authenticated') {
     </div>
   </div>
 
-  <script>
-    // v3.0 - 修复按钮响应问题 - 2026-04-17
-    console.log('Dashboard v3.0 loaded');
+  <script is:inline>
+    // v4.0 - 修复模块作用域问题 - 使用 is:inline
+    console.log('Dashboard v4.0 loaded - inline script');
     let contentData = {};
 
     // 加载内容数据
