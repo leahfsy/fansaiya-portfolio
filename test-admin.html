@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>测试管理后台功能</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    .result { margin-top: 10px; padding: 10px; background: #f0f0f0; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>管理后台功能测试</h1>
+
+  <div class="test-section">
+    <h2>测试 1: 删除图片 API</h2>
+    <button onclick="testDelete()">测试删除</button>
+    <div id="delete-result" class="result"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>测试 2: 上传图片 API</h2>
+    <input type="file" id="test-file" accept="image/*">
+    <button onclick="testUpload()">测试上传</button>
+    <div id="upload-result" class="result"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>测试 3: 获取内容 API</h2>
+    <button onclick="testGetContent()">测试获取内容</button>
+    <div id="content-result" class="result"></div>
+  </div>
+
+  <script>
+    async function testDelete() {
+      const resultDiv = document.getElementById('delete-result');
+      resultDiv.innerHTML = '测试中...';
+
+      try {
+        const response = await fetch('/api/admin/delete-work-image', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            workIndex: 0,
+            type: 'image',
+            imageIndex: 0
+          }),
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        resultDiv.innerHTML = `<span class="success">成功！</span><br>响应: ${JSON.stringify(data)}<br>状态码: ${response.status}`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span class="error">失败！</span><br>错误: ${error.message}`;
+      }
+    }
+
+    async function testUpload() {
+      const resultDiv = document.getElementById('upload-result');
+      const fileInput = document.getElementById('test-file');
+
+      if (!fileInput.files[0]) {
+        resultDiv.innerHTML = '<span class="error">请先选择文件！</span>';
+        return;
+      }
+
+      resultDiv.innerHTML = '上传中...';
+
+      try {
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        formData.append('workIndex', '0');
+        formData.append('type', 'cover');
+
+        const response = await fetch('/api/admin/upload-work-image', {
+          method: 'POST',
+          body: formData,
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        resultDiv.innerHTML = `<span class="success">成功！</span><br>响应: ${JSON.stringify(data).substring(0, 200)}...<br>状态码: ${response.status}`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span class="error">失败！</span><br>错误: ${error.message}`;
+      }
+    }
+
+    async function testGetContent() {
+      const resultDiv = document.getElementById('content-result');
+      resultDiv.innerHTML = '获取中...';
+
+      try {
+        const response = await fetch('/api/admin/get-content', {
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        resultDiv.innerHTML = `<span class="success">成功！</span><br>作品数量: ${data.works?.length || 0}<br>状态码: ${response.status}`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span class="error">失败！</span><br>错误: ${error.message}`;
+      }
+    }
+  </script>
+</body>
+</html>

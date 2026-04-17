@@ -13,6 +13,9 @@ if (!adminToken || adminToken.value !== 'authenticated') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>管理后台</title>
   <style>
     * {
@@ -440,7 +443,8 @@ if (!adminToken || adminToken.value !== 'authenticated') {
   </div>
 
   <script>
-    // v2.0 - 强制刷新缓存
+    // v3.0 - 修复按钮响应问题 - 2026-04-17
+    console.log('Dashboard v3.0 loaded');
     let contentData = {};
 
     // 加载内容数据
