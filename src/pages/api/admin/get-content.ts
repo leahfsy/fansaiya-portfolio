@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { getStore } from '@netlify/blobs';
 
 export const GET: APIRoute = async ({ cookies }) => {
   // 验证登录
@@ -10,27 +9,42 @@ export const GET: APIRoute = async ({ cookies }) => {
 
   try {
     // 尝试从 Netlify Blobs 读取
-    const store = getStore('content');
-    let content = await store.get('works', { type: 'json' });
+    if (import.meta.env.PROD) {
+      try {
+        const { getStore } = await import('@netlify/blobs');
+        const store = getStore('content');
+        let content = await store.get('works', { type: 'json' });
 
-    // 如果 Blobs 中没有数据，从本地 JSON 初始化
-    if (!content) {
-      const fs = await import('fs/promises');
-      const path = await import('path');
-      const contentPath = path.join(process.cwd(), 'src', 'content.json');
-      const contentStr = await fs.readFile(contentPath, 'utf-8');
-      content = JSON.parse(contentStr);
+        // 如果 Blobs 中没有数据，从本地 JSON 初始化
+        if (!content) {
+          const fs = await import('fs/promises');
+          const path = await import('path');
+          const contentPath = path.join(process.cwd(), 'src', 'content.json');
+          const contentStr = await fs.readFile(contentPath, 'utf-8');
+          content = JSON.parse(contentStr);
+          await store.setJSON('works', content);
+        }
 
-      // 保存到 Blobs
-      await store.setJSON('works', content);
+        return new Response(JSON.stringify(content), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      } catch (blobError) {
+        console.error('Blobs error:', blobError);
+      }
     }
 
-    return new Response(JSON.stringify(content), {
+    // 本地开发环境：直接读取文件
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const contentPath = path.join(process.cwd(), 'src', 'content.json');
+    const content = await fs.readFile(contentPath, 'utf-8');
+    return new Response(content, {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
     console.error('Read error:', error);
-    return new Response(JSON.stringify({ error: 'Read failed' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Read failed', message: error.message }), { status: 500 });
   }
 };
